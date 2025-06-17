@@ -94,7 +94,10 @@
                 <p>Create your account to apply for student trainee program</p>
             </div>
             
-            <form id="registerForm" onsubmit="handleRegister(event)">
+           
+            <form id="ApplicantRegistrationForm" method="POST" enctype="multipart/form-data" action="{% url 'register_applicant' %}">
+                {% csrf_token %}
+              
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
@@ -131,8 +134,8 @@
             </form>
             
             <div class="auth-links">
-                <a href="login-applicant.html">Already have an account? Login here</a><br>
-                <a href="RoleSelection.html">Back to role selection</a>
+                <a href="{% url 'login_applicant' %}">Already have an account? Login here</a><br>
+                <a href="{% url 'role_selection' %}">Back to role selection</a>
             </div>
         </div>
     </div>

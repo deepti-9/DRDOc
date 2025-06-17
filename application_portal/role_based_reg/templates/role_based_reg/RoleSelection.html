@@ -1,13 +1,17 @@
+
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="DRDO Logo.png">
-    <title>DRDOck</title>
+    <link rel="icon" type="image/jpeg" href="{% static 'role_based_reg/images/DRDO_Logo.png' %}">
+    <title>DRDOc</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            background-image: url('DRDOMETCALFEHOUSE.jpeg');
+            background-image: url("{% static 'role_based_reg/images/DRDOMETCALFEHOUSE.jpeg' %}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -139,7 +143,7 @@
 </head>
 <body>
     <!-- DRDO Logo in top left -->
-    <img src="DRDO Logo.png" alt="DRDO Logo" class="drdo-logo-topleft">
+    <img src="{% static 'role_based_reg/images/DRDO_Logo.png' %}" alt="DRDO Logo" class="drdo-logo-topleft">
     <div class="role-container">
         <div class="role-card">
             <div class="header-logo">
@@ -150,14 +154,14 @@
             <div class="role-selection">
                 <h4>Choose your role</h4>
                 <div class="role-buttons">
-                    <a href="login-applicant.html" class="role-btn applicant-btn">
+                    <a href="{% url 'login_applicant' %}" class="role-btn applicant-btn">
                         <div class="btn-icon"><i class="fas fa-user-graduate"></i></div>
                         <div class="btn-text">
                             <h5>Student Trainee</h5>
                             <p>Apply for student internship/training at DESIDOC</p>
                         </div>
                     </a>
-                    <a href="login-hr.html" class="role-btn hr-btn">
+                    <a href="{% url 'login_hr' %}" class="role-btn hr-btn">
                         <div class="btn-icon"><i class="fas fa-user-tie"></i></div>
                         <div class="btn-text">
                             <h5>HR/Admin</h5>
