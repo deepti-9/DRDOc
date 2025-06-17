@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="DRDO Logo.png">
+    <title>DRDOck</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-image: url('DRDOMETCALFEHOUSE.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .role-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .role-card {
+            background: rgba(255,255,255,0.7);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 50px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .header-logo {
+            margin-bottom: 30px;
+        }
+        .header-logo h1 {
+            color: #1e3c72;
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .header-logo h2 {
+            color:rgb(44, 50, 56);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        .header-logo h3 {
+            color: #495057;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .role-selection {
+            margin-top: 40px;
+        }
+        .role-selection h4 {
+            color: #495057;
+            margin-bottom: 40px;
+            font-size: 1.4rem;
+        }
+        .role-buttons {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .role-btn {
+            background: white;
+            border: 3px solid #e9ecef;
+            border-radius: 15px;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 280px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .role-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+        .applicant-btn:hover {
+            border-color: #007bff;
+            background: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%);
+        }
+        .hr-btn:hover {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #fff8f8 0%, #ffebee 100%);
+        }
+        .btn-icon {
+            margin-bottom: 20px;
+        }
+        .btn-icon i {
+            font-size: 4rem;
+        }
+        .applicant-btn .btn-icon i {
+            color: #007bff;
+        }
+        .hr-btn .btn-icon i {
+            color: #dc3545;
+        }
+        .btn-text h5 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .btn-text p {
+            color: #6c757d;
+            margin: 0;
+        }
+        .drdo-logo-topleft {
+            position: fixed;
+            top: 24px;
+            left: 32px;
+            width: 125px;
+            height: auto;
+            z-index: 999;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50%;
+            padding: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        @media (max-width: 900px) {
+            .role-card {
+                padding: 20px;
+            }
+            .role-buttons {
+                gap: 20px;
+            }
+            .role-btn {
+                width: 90vw;
+                padding: 30px 10px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- DRDO Logo in top left -->
+    <img src="DRDO Logo.png" alt="DRDO Logo" class="drdo-logo-topleft">
+    <div class="role-container">
+        <div class="role-card">
+            <div class="header-logo">
+                <h1>DRDO Portal</h1>
+                <h2>Metcalfe House</h2>
+                <h3>Select your role to continue</h3>
+            </div>
+            <div class="role-selection">
+                <h4>Choose your role</h4>
+                <div class="role-buttons">
+                    <a href="login-applicant.html" class="role-btn applicant-btn">
+                        <div class="btn-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="btn-text">
+                            <h5>Student Trainee</h5>
+                            <p>Apply for student internship/training at DESIDOC</p>
+                        </div>
+                    </a>
+                    <a href="login-hr.html" class="role-btn hr-btn">
+                        <div class="btn-icon"><i class="fas fa-user-tie"></i></div>
+                        <div class="btn-text">
+                            <h5>HR/Admin</h5>
+                            <p>Manage applications and trainees</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
