@@ -224,7 +224,7 @@
             <!-- Error/Success Messages -->
             <div id="messageContainer"></div>
             
-            <form id="hrRegistrationForm" method="POST" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
+            <form id="hrRegistrationForm" method="POST" enctype="multipart/form-data" action="{% url 'register_hr' %}">
                 {% csrf_token %}
                 
                 <!-- Personal Information Section -->
@@ -397,10 +397,10 @@
             </form>
             
             <div class="auth-links">
-                <a href="login-hr.html">
+                <a href="{% url 'login_hr' %}">
                     <i class="fas fa-sign-in-alt"></i> Already have an account? Login here
                 </a>
-                <a href="index.html">
+                <a href="{% url 'role_selection'%}">
                     <i class="fas fa-home"></i> Back to role selection
                 </a>
             </div>
@@ -464,9 +464,13 @@
                 matchDiv.innerHTML = '<span style="color: #dc3545;">✗ Passwords do not match</span>';
             }
         }
-        
+
         function showMessage(message, type) {
-            const container = document.getElementById('messageContainer');
-            container.innerHTML = `
-                <div class="${type}-message">
-                    <i class="fas ${type === 'error' ? 'fa
+        const container = document.getElementById('messageContainer');
+        container.innerHTML = `
+        <div class="${type}-message">
+            <i class="fas ${type === 'error' ? 'fa-times-circle' : 'fa-check-circle'}"></i>
+            ${message}
+        </div>
+    `;
+}
