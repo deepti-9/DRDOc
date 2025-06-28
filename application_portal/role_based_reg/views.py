@@ -3,14 +3,13 @@ from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-# Create your views here.
-from django.shortcuts import render
 
+from django.shortcuts import render
 def role_selection(request):
     return render(request, 'role_based_reg/RoleSelection.html')
 
 
-def login_applicant_view(request):
+def login_applicant(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -53,31 +52,26 @@ def register_applicant(request):
         # Check if passwords match
         if password != confirm_password:
             messages.error(request, "Passwords do not match")
-            return render(request, 'register-applicant.html')
+            return render(request, 'role_based_reg/register-applicant.html')
 
         # Check if username already exists
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already exists")
-            return render(request, 'register-applicant.html')
+            return render(request, 'role_based_reg/register-applicant.html')
 
         # Check if email already exists
         if User.objects.filter(email=email).exists():
             messages.error(request, "Email already registered")
-            return render(request, 'register-applicant.html')
+            return render(request, 'role_based_reg/register-applicant.html')
 
         # Create the user
-        user = User.objects.create_user(
-            username=username,
-            password=password,
-            email=email,
-            first_name=first_name,
-            last_name=last_name
-        )
-
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.first_name = first_name
+        user.last_name = last_name
         user.save()
 
         messages.success(request, "Registration successful! Please login.")
-        return redirect('login_applicant_view')
+        return redirect('login_applicant')
 
     return render(request, 'role_based_reg/register-applicant.html')
 

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DESIDOC Student Trainee Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: #f4f6fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .form-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.08);
+            padding: 40px 30px 30px 30px;
+        }
+        .form-title {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+            color: #1e3c72;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2a5298;
+            margin: 25px 0 10px 0;
+            border-bottom: 1px solid #e3e6f0;
+            padding-bottom: 4px;
+        }
+        .form-row {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            flex: 1;
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 4px;
+            display: block;
+        }
+        input[type="text"], input[type="email"], input[type="date"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 7px 10px;
+            border: 1px solid #bdbdbd;
+            border-radius: 6px;
+            background: #f8fafd;
+            font-size: 1rem;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            transition: border 0.2s;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+            border: 1.5px solid #2a5298;
+            background: #fff;
+            outline: none;
+        }
+        input[type="file"] {
+            background: #f8fafd;
+            border: 1px solid #bdbdbd;
+            border-radius: 6px;
+            padding: 5px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            width: 100%;
+        }
+        .photo-upload, .file-upload {
+            border: 1.5px dashed #bdbdbd;
+            border-radius: 8px;
+            background: #f6f7fb;
+            text-align: center;
+            padding: 18px;
+            margin-bottom: 10px;
+            color: #888;
+            font-size: 0.98rem;
+            position: relative;
+        }
+        .photo-upload i, .file-upload i {
+            font-size: 2rem;
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+        .required { color: #e53935; }
+        /* Tooltip styles */
+        .tooltip-custom {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+    .tooltip-custom i {
+        font-size: 14px;            /* smaller font size */
+        color: white;
+        background-color: #1e3c72; /* dark blue circle */
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        display: inline-block;
+        font-weight: bold;
+        user-select: none;
+}
+    .tooltip-custom .tooltiptext {
+        visibility: hidden;
+        width: 230px;
+        background-color: #1976d2;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 12px 14px;
+        position: absolute;
+        z-index: 10;
+        bottom: 120%;
+        left: 50%;
+        margin-left: -115px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.95rem;
+        box-shadow: 0 2px 8px rgba(30,60,114,0.13);
+}
+
+    .tooltip-custom .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -7px;
+        border-width: 7px;
+        border-style: solid;
+        border-color: #1976d2 transparent transparent transparent;
+}
+
+    .tooltip-custom:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+}
+
+        .education-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .education-table th, .education-table td {
+            border: 1px solid #dee2e6;
+            padding: 8px 6px;
+            text-align: center;
+        }
+        .education-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        .education-table input {
+            width: 100%;
+            border: none;
+            padding: 4px;
+            text-align: center;
+            background: transparent;
+        }
+        .declaration-box {
+            background: #fffbe7;
+            border: 1px solid #ffe082;
+            border-radius: 6px;
+            padding: 15px 18px;
+            margin: 18px 0;
+            font-size: 1rem;
+        }
+        .form-actions {
+            display: flex;
+            gap: 18px;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        .file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.file-upload label {
+    text-align: center;
+}
+
+        .btn-submit {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 26px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(30,60,114,0.08);
+            transition: background 0.2s;
+        }
+        .btn-submit:hover {
+            background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
+        }
+        .btn-cancel {
+            background: #fff;
+            color: #2a5298;
+            border: 1.5px solid #2a5298;
+            border-radius: 6px;
+            padding: 10px 22px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-cancel:hover {
+            background: #2a5298;
+            color: #fff;
+        }
+        @media (max-width: 768px) {
+            .form-container { padding: 15px 5px; }
+            .form-row { flex-direction: column; gap: 0; }
+            .form-actions { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-title">
+            FORM FOR REGISTRATION OF STUDENT TRAINEE AT DESIDOC
+        </div>
+        <form id="applicationForm" method="POST" enctype="multipart/form-data" >
+            <!-- BIO DATA -->
+            <div class="section-title">
+                BIO DATA
+            </div>
+            <div class="form-row">
+                <div class="form-group" style="flex:2;">
+                    <label for="studentName">Student's Name <span class="required">*</span></label>
+                    <input type="text" id="studentName" name="studentName" required>
+                </div>
+                <div class="form-group">
+                    <div class="photo-upload">
+                       <label for="photograph">
+    Photograph of Student
+    <span class="tooltip-custom" tabindex="0" aria-label="Photograph requirements info">
+        <i class="fas fa-info-circle"></i>
+        <span class="tooltiptext" role="tooltip">
+            <strong>Requirements:</strong><br>
+            • Format: JPG, JPEG, PNG<br>
+            • Max size: 2MB<br>
+            • Passport size photo preferred
+        </span>
+    </span>
+</label>
+
+                        <input type="file" id="photograph" name="photograph" accept="image/jpeg, image/png" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fatherName">Father's Name <span class="required">*</span></label>
+                    <input type="text" id="fatherName" name="fatherName" required>
+                </div>
+                <div class="form-group">
+                    <label for="fatherOccupation">Father's Occupation</label>
+                    <input type="text" id="fatherOccupation" name="fatherOccupation">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="dob">Date of Birth <span class="required">*</span></label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email ID <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="presentAddress">Present Address <span class="required">*</span></label>
+                    <input type="text" id="presentAddress" name="presentAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="permanentAddress">Permanent Address</label>
+                    <input type="text" id="permanentAddress" name="permanentAddress">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="telephoneResidence">Telephone No. (Residence)</label>
+                    <input type="text" id="telephoneResidence" name="telephoneResidence">
+                </div>
+                <div class="form-group">
+                    <label for="telephoneMobile">Telephone No. (Mobile) <span class="required">*</span></label>
+                    <input type="text" id="telephoneMobile" name="telephoneMobile" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group" style="flex:2;">
+                    <label for="allergies">Allergies (if any)</label>
+                    <input type="text" id="allergies" name="allergies" placeholder="Mention if you have any allergies">
+                </div>
+            </div>
+            <!-- Educational Qualifications -->
+            <div class="section-title">
+                Educational Qualifications
+            </div>
+            <table class="education-table">
+                <tr>
+                    <th>S.No</th>
+                    <th>Qualifications</th>
+                    <th>Board / University</th>
+                    <th>Year of Passing</th>
+                    <th>* Percentage of Marks obtained</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>X</td>
+                    <td><input type="text" name="x_board"></td>
+                    <td><input type="text" name="x_year"></td>
+                    <td><input type="text" name="x_percent"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>XII</td>
+                    <td><input type="text" name="xii_board"></td>
+                    <td><input type="text" name="xii_year"></td>
+                    <td><input type="text" name="xii_percent"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>BTech I-Year</td>
+                    <td><input type="text" name="btech1_board"></td>
+                    <td><input type="text" name="btech1_year"></td>
+                    <td>
+                        Sem1: <input type="text" name="btech1_sem1" style="width:50px;">
+                        Sem2: <input type="text" name="btech1_sem2" style="width:50px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>BTech II-Year</td>
+                    <td><input type="text" name="btech2_board"></td>
+                    <td><input type="text" name="btech2_year"></td>
+                    <td>
+                        Sem3: <input type="text" name="btech2_sem3" style="width:50px;">
+                        Sem4: <input type="text" name="btech2_sem4" style="width:50px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>BTech III-Year</td>
+                    <td><input type="text" name="btech3_board"></td>
+                    <td><input type="text" name="btech3_year"></td>
+                    <td>
+                        Sem5: <input type="text" name="btech3_sem5" style="width:50px;">
+                        Sem6: <input type="text" name="btech3_sem6" style="width:50px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>BTech IV-Year</td>
+                    <td><input type="text" name="btech4_board"></td>
+                    <td><input type="text" name="btech4_year"></td>
+                    <td>
+                        Sem7: <input type="text" name="btech4_sem7" style="width:50px;">
+                        Sem8: <input type="text" name="btech4_sem8" style="width:50px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>MTech I-Year</td>
+                    <td><input type="text" name="mtech1_board"></td>
+                    <td><input type="text" name="mtech1_year"></td>
+                    <td>
+                        Sem1: <input type="text" name="mtech1_sem1" style="width:50px;">
+                        Sem2: <input type="text" name="mtech1_sem2" style="width:50px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>MTech II-Year</td>
+                    <td><input type="text" name="mtech2_board"></td>
+                    <td><input type="text" name="mtech2_year"></td>
+                    <td>
+                        Sem3: <input type="text" name="mtech2_sem3" style="width:50px;">
+                        Sem4: <input type="text" name="mtech2_sem4" style="width:50px;">
+                    </td>
+                </tr>
+            </table>
+            <div style="margin-top:8px; font-size:0.97em;">
+                * In case of CGPA or SGPA, calculate Marks in % = (CGPA or SGPA Grade) × 8.89
+            </div>
+            <!-- Course and Training Details -->
+            <div class="section-title">
+                Course & Training Details
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="courseName">Course Name and Stream (pursuing) <span class="required">*</span></label>
+                    <input type="text" id="courseName" name="courseName" required>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester <span class="required">*</span></label>
+                    <input type="text" id="semester" name="semester" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="instituteName">Name of Institute <span class="required">*</span></label>
+                    <input type="text" id="instituteName" name="instituteName" required>
+                </div>
+                <div class="form-group">
+                    <label for="trainingDuration">Duration of Training <span class="required">*</span></label>
+                    <input type="text" id="trainingDuration" name="trainingDuration" placeholder="e.g. 2 months" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="trainingFrom">From <span class="required">*</span></label>
+                    <input type="date" id="trainingFrom" name="trainingFrom" required>
+                </div>
+                <div class="form-group">
+                    <label for="trainingTo">To <span class="required">*</span></label>
+                    <input type="date" id="trainingTo" name="trainingTo" required>
+                </div>
+            </div>
+            <!-- Document Uploads -->
+            <div class="section-title">
+                Document Uploads
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cvUpload">
+                        CV/Resume <span class="required">*</span>
+                        <span class="tooltip-custom">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext">
+                                <strong>Requirements:</strong><br>
+                                • Format: PDF, DOC, DOCX<br>
+                                • Max size: 5MB
+                            </span>
+                        </span>
+                    </label>
+                    <div class="file-upload">
+                        <i class="fas fa-file-lines"></i>
+                        <input type="file" id="cvUpload" name="cvUpload" accept=".pdf,.doc,.docx" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="identificationDoc">
+                        Identification Document <span class="required">*</span>
+                        <span class="tooltip-custom">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext">
+                                <strong>Requirements:</strong><br>
+                                • Format: PDF, JPG, PNG<br>
+                                • Max size: 3MB<br>
+                                • Clear &amp; readable copy
+                            </span>
+                        </span>
+                    </label>
+                    <div class="file-upload">
+                        <i class="fas fa-id-card"></i>
+                        <input type="file" id="identificationDoc" name="identificationDoc" accept=".pdf,.jpg,.jpeg,.png" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Declaration -->
+            <div class="section-title">
+                Declaration
+            </div>
+            <div class="form-group" style="margin-top:12px;">
+  <input type="checkbox" id="photoConfirm" name="photoConfirm" required>
+  <label for="photoConfirm" style="display:inline; font-weight:400;">
+    I undertake that I will be available during normal office hours through the duration of training. I will not bring any removable storage device (e.g. Mobile Phone, Laptop, Pen Drive, CD) in Metcalfe House during my training period. I am solely responsible for any violation of training guidelines.
+</label>
+</div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="declarationDate"> Date <span class="required">*</span></label>
+                    <input type="date" id="declarationDate" name="declarationDate" required>
+                </div>
+             
+<div class="file-upload">
+  <div class="upload-label-row">
+    <span class="upload-label-text">Signature of Student <span class="required">*</span></span>
+    <span class="tooltip-custom" tabindex="0" aria-label="Signature requirements info">
+      <i class="fas fa-info-circle"></i>
+      <span class="tooltiptext">
+        <strong>Requirements:</strong><br>
+        • Format: JPG, JPEG, PNG<br>
+        • Max size: 2MB<br>
+        • Clear signature on white background
+      </span>
+    </span>
+  </div>
+  <input type="file" id="signatureUpload" name="signatureUpload" accept="image/jpeg, image/png" required>
+</div>
+
+
+
+
+            </div>
+            <div class="form-actions">
+                {% csrf_token%}
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-paper-plane"></i> Submit Application
+                </button>
+                <a href="{% url 'applicant_dashboard' %}" class="btn-cancel">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+    <script>
+        // File size validation for uploads
+        document.getElementById('cvUpload').addEventListener('change', function() {
+            validateFile(this, 5);
+        });
+        document.getElementById('identificationDoc').addEventListener('change', function() {
+            validateFile(this, 3);
+        });
+        document.getElementById('photograph').addEventListener('change', function() {
+            validateFile(this, 2);
+        });
+
+        function validateFile(input, maxSizeMB) {
+            const file = input.files[0];
+            if (!file) return;
+            const maxSize = maxSizeMB * 1024 * 1024;
+            if (file.size > maxSize) {
+                alert(`File size exceeds limit of ${maxSizeMB}MB.`);
+                input.value = '';
+            }
+        }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Form submitted (demo only).');
+        }
+        window.onload = function() {
+            document.getElementById('declarationDate').value = new Date().toISOString().split('T')[0];
+        }
+    </script>
+</body>
+</html>

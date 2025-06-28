@@ -387,8 +387,9 @@
                 
                 <!-- Form Actions -->
                 <div class="form-actions" style="text-align: center;">
-                    <button type="button" class="btn-cancel" onclick="window.location.href='login-hr.html'">
+                    <a href="{% url 'login_hr' %}" class="btn-cancel">
                         <i class="fas fa-arrow-left"></i> Back to Login
+                    </a>    
                     </button>
                     <button type="submit" class="btn-register" id="submitBtn">
                         <i class="fas fa-user-plus"></i> Register for HR Access
