@@ -1,0 +1,31 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+env/
+
+# Django migration files (optional to ignore if auto-created)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+# Don't ignore actual migration .py files unless intentional
+
+# Database
+*.sqlite3
+
+# Environment variables
+.env
+
+# Media & uploads (if applicable)
+media/
+uploads/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE specific (optional)
+.vscode/
+.idea/
