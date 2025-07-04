@@ -241,10 +241,10 @@
         <div class="dashboard-header">
             <h2><i class="fas fa-user-tie"></i> HR Dashboard - DESIDOC Training Applications</h2>
             <div>
-                <span id="welcomeUser">Welcome, HR Admin</span>
-                <button class="logout-btn" onclick="logout()">
+                <span id="welcomeUser">Welcome, {{Username}}</span>
+                <a href="{% url 'role_selection' %}" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+                </a>
             </div>
         </div>
         
@@ -310,8 +310,9 @@
         let selectedApplication = null;
         let reviewAction = '';
 
-        function loadApplications() {
-            const applications = JSON.parse(localStorage.getItem('applications') || '[]');
+        async function loadApplications() {
+            const response = await fetch('/hr/get_applications/');
+            const applications = await response.json();
             updateStats(applications);
             displayApplications(applications);
         }
@@ -422,8 +423,24 @@
             selectedApplication = null;
             reviewAction = '';
         }
+        function getCSRFToken() {
+            let cookieValue = null;
+            const name = 'csrftoken';
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    cookie = cookie.trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
 
-        function submitReview() {
+
+        async function submitReview() {
             const comments = document.getElementById('reviewComments').value.trim();
             
             if (!comments) {
@@ -431,27 +448,35 @@
                 return;
             }
 
-            const applications = JSON.parse(localStorage.getItem('applications') || '[]');
-            const appIndex = applications.findIndex(app => app.id === selectedApplication.id);
-            
-            if (appIndex !== -1) {
-                applications[appIndex].status = reviewAction === 'approve' ? 'approved' : 'rejected';
-                applications[appIndex].reviewComments = comments;
-                applications[appIndex].reviewDate = new Date().toISOString();
-                applications[appIndex].reviewedBy = 'HR Admin';
-                
-                localStorage.setItem('applications', JSON.stringify(applications));
-                
-                // Show success message
-                const message = reviewAction === 'approve' ? 
+            const reponse =  await fetch('/hr/review/',{
+                method: 'POST',
+                header:{
+                    'Content -Type':'application/json',
+                    'X-CSRFTOKEN': getCSRFTOKEN()
+                },
+                body : JSON>stringify({
+                    id: selectedApplication.id,
+                    action: reviewAction,
+                    comments: comments
+                })
+            }); 
+             const result = await response.json();
+
+            if (result.success) {
+                const message = reviewAction === 'approve' ?
                     `Application approved successfully!\n\nApproval message sent to ${selectedApplication.studentName}:\n\n"Congratulations! Your application has been approved. Please report to Main Administrative Block, DESIDOC at 13:00 hrs IST on Monday, ${formatDate(selectedApplication.trainingFrom)}. Contact: training@desidoc.drdo.in"` :
                     `Application rejected.\n\nRejection message sent to ${selectedApplication.studentName}:\n\n"Thank you for your interest. Unfortunately, your application has not been approved. ${comments}. You may reapply for future opportunities."`;
-                
+
                 alert(message);
                 closeModal();
-                loadApplications();
+                loadApplications(); // Reload from backend
+            } else {
+                alert("Failed to update application: " + result.message);
             }
-        }
+        }  
+
+
+           
 
         function getStatusIcon(status) {
             switch (status) {
