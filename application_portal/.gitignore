@@ -6,6 +6,7 @@ __pycache__/
 # Virtual environment
 venv/
 env/
+/media/
 
 # Django migration files (optional to ignore if auto-created)
 **/migrations/*.pyc
