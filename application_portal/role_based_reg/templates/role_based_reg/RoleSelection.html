@@ -1,21 +1,15 @@
-
-{% load static %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/jpeg" href="{% static 'role_based_reg/images/DRDO_Logo.png' %}">
     <title>DRDOc</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            background-image: url("{% static 'role_based_reg/images/DRDOMETCALFEHOUSE.jpeg' %}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            margin:0;
+            padding:0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color:#f2f4f8
         }
         .role-container {
             min-height: 100vh;
@@ -25,7 +19,7 @@
             padding: 20px;
         }
         .role-card {
-            background: rgba(255,255,255,0.7);
+            background: #0bb3cab3;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             padding: 50px;
@@ -143,7 +137,6 @@
 </head>
 <body>
     <!-- DRDO Logo in top left -->
-    <img src="{% static 'role_based_reg/images/DRDO_Logo.png' %}" alt="DRDO Logo" class="drdo-logo-topleft">
     <div class="role-container">
         <div class="role-card">
             <div class="header-logo">

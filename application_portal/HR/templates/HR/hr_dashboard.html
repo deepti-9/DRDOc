@@ -174,42 +174,66 @@
         }
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5); /* grey transparent */
+            display: none; 
             justify-content: center;
-            z-index: 1000;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease-in-out;
         }
-        .modal {
-            background: white;
-            border-radius: 10px;
+        .modal-box {
+            background: #fff;
             padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
+            border-radius: 15px;
+            width: 500px;
+            max-width: 95%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
         }
         .modal h3 {
+            font-size: 1.8rem;
             margin-bottom: 20px;
+            color: #343a40;
+            border-left: 4px solid #dc3545;
+            padding-left: 12px;
+        }
+        .modal-content {
+            margin-top: 10px;
+        }
+        .modal-content label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
             color: #495057;
         }
         .modal textarea {
             width: 100%;
-            padding: 12px;
+            height: 130px;
+            padding: 12px 14px;
+            font-size: 15px;
             border: 1px solid #ced4da;
-            border-radius: 6px;
+            border-radius: 5px;
             resize: vertical;
-            min-height: 100px;
+            background: #f8f9fa;
+            transition: border 0.3s ease;
+        }
+        .modal-content textarea:focus {
+            outline: none;
+            border-color: #dc3545;
+            background: #fff;
         }
         .modal-actions {
             display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 30px;
         }
         .confirm-btn {
             padding: 10px 25px;
@@ -234,6 +258,27 @@
             border-radius: 6px;
             cursor: pointer;
         }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                background: rgba(0, 0, 0, 0.0);
+            }
+            to {
+                background: rgba(0, 0, 0, 0.45);
+            }
+        }
     </style>
 </head>
 <body>
@@ -241,7 +286,7 @@
         <div class="dashboard-header">
             <h2><i class="fas fa-user-tie"></i> HR Dashboard - DESIDOC Training Applications</h2>
             <div>
-                <span id="welcomeUser">Welcome, {{Username}}</span>
+                <span id="welcomeUser">Welcome, {{username}}</span>
                 <a href="{% url 'role_selection' %}" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
@@ -270,16 +315,16 @@
         
         <!-- Filters -->
         <div class="filters">
-            <button class="filter-btn active" onclick="setFilter('all')">
+            <button class="filter-btn active" onclick="setFilter('all',this)">
                 <i class="fas fa-list"></i> All Applications
             </button>
-            <button class="filter-btn" onclick="setFilter('pending')">
+            <button class="filter-btn" onclick="setFilter('pending',this)">
                 <i class="fas fa-clock"></i> Pending
             </button>
-            <button class="filter-btn" onclick="setFilter('approved')">
+            <button class="filter-btn" onclick="setFilter('approved',this)">
                 <i class="fas fa-check-circle"></i> Approved
             </button>
-            <button class="filter-btn" onclick="setFilter('rejected')">
+            <button class="filter-btn" onclick="setFilter('rejected',this)">
                 <i class="fas fa-times-circle"></i> Rejected
             </button>
         </div>
@@ -291,9 +336,9 @@
     </div>
     
     <!-- Review Modal -->
-    <div id="reviewModal" class="modal-overlay" style="display: none;">
-        <div class="modal">
-            <h3 id="modalTitle">Review Application</h3>
+    <div id="reviewModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modalTitle" class="modal-title">Review Application</h3>
             <div class="modal-content">
                 <label for="reviewComments">Review Comments:</label>
                 <textarea id="reviewComments" placeholder="Please provide reason for your decision..." required></textarea>
@@ -305,14 +350,17 @@
         </div>
     </div>
 
+  
+
     <script>
+        let applications = [];  // Global list
         let currentFilter = 'all';
         let selectedApplication = null;
         let reviewAction = '';
 
         async function loadApplications() {
             const response = await fetch('/hr/get_applications/');
-            const applications = await response.json();
+            applications = await response.json();
             updateStats(applications);
             displayApplications(applications);
         }
@@ -389,21 +437,30 @@
             `).join('');
         }
 
-        function setFilter(filter) {
+        function setFilter(filter,btn = null) {
             currentFilter = filter;
             
             // Update active filter button
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
-            
-            loadApplications();
+            if (btn) btn.classList.add('active');
+
+            displayApplications(applications);
         }
 
         function openReviewModal(applicationId, action) {
-            const applications = JSON.parse(localStorage.getItem('applications') || '[]');
+            console.log(">>> openReviewModal CALLED");
+            console.log("applicationId:", applicationId, "action:", action);
+            
+           
+            
             selectedApplication = applications.find(app => app.id === applicationId);
+              if (!selectedApplication) {
+                alert("Could not find application data. Please refresh the page.");
+                return;
+            }
+
             reviewAction = action;
             
             const modal = document.getElementById('reviewModal');
@@ -413,6 +470,8 @@
             title.textContent = `${action === 'approve' ? 'Approve' : 'Reject'} Application - ${selectedApplication.studentName}`;
             confirmBtn.textContent = `Confirm ${action === 'approve' ? 'Approval' : 'Rejection'}`;
             confirmBtn.className = `confirm-btn ${action}`;
+
+            confirmBtn.onclick = submitReview;
             
             document.getElementById('reviewComments').value = '';
             modal.style.display = 'flex';
@@ -439,28 +498,47 @@
             return cookieValue;
         }
 
+       
 
         async function submitReview() {
-            const comments = document.getElementById('reviewComments').value.trim();
-            
-            if (!comments) {
-                alert('Please provide review comments');
-                return;
-            }
+        console.log("✅ submitReview() triggered");
+        const comments = document.getElementById('reviewComments').value.trim();
+       
 
-            const reponse =  await fetch('/hr/review/',{
+        if (!comments) {
+            alert('Please provide review comments');
+            return;
+        }
+
+        try {
+            const response = await fetch('/hr/review/', {
                 method: 'POST',
-                header:{
-                    'Content -Type':'application/json',
-                    'X-CSRFTOKEN': getCSRFTOKEN()
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFTOKEN': getCSRFToken()
                 },
-                body : JSON>stringify({
+                body: JSON.stringify({
                     id: selectedApplication.id,
                     action: reviewAction,
                     comments: comments
                 })
-            }); 
-             const result = await response.json();
+            });
+
+            // Log status code and raw response text
+            console.log("Status:", response.status);
+            const text = await response.text();
+            console.log("Raw Response Text:", text);
+
+            let result;
+            try {
+                result = JSON.parse(text);
+            } catch (jsonError) {
+                console.error("JSON parse error:", jsonError);
+                alert("❌ Failed to parse response from server.");
+                return;
+            }
+
+            console.log("Review Response:", result);
 
             if (result.success) {
                 const message = reviewAction === 'approve' ?
@@ -469,14 +547,17 @@
 
                 alert(message);
                 closeModal();
-                loadApplications(); // Reload from backend
+                await loadApplications();
+                setFilter(currentFilter);
             } else {
                 alert("Failed to update application: " + result.message);
             }
-        }  
 
-
-           
+        } catch (error) {
+            console.error("🔥 Fetch error:", error);
+            alert("❌ An error occurred while submitting review.");
+        }
+    }
 
         function getStatusIcon(status) {
             switch (status) {

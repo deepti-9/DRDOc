@@ -8,10 +8,10 @@ venv/
 env/
 /media/
 
-# Django migration files (optional to ignore if auto-created)
+# Django migration files 
 **/migrations/*.pyc
 **/migrations/__pycache__/
-# Don't ignore actual migration .py files unless intentional
+
 
 # Database
 *.sqlite3
