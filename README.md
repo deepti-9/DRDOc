@@ -72,24 +72,36 @@ docker compose down
 # (Optional) Remove volumes for a clean state
 docker compose down -v
 
-🏠 Role-Based Home Page
-![Home Page](Screenshots/HomePage.png)
-📝 Applicant Registration Page
 
-🔐 Applicant Login
-<img src="Screenshots/ApplicantLogin.png" width="100%"/>
-🧑‍💼 HR Login
-<img src="https://github.com/user-attachments/assets/5c4731d9-bfcc-4955-a8fb-2a6b5d777d90" width="100%"/>
-📝 HR Registration
-<img src="https://github.com/user-attachments/assets/7fb42141-395a-4c51-8dbc-2e978374066d" width="100%"/>
-🎓 Applicant Dashboard
-![ApplicantLogin](Screenshots/ApplicantLogin.png)
-📄 Application Form
-<img src="Screenshots/ApplicationForm.png" width="100%"/>
-📊 Status Dashboard
-<img src="Screenshots/ApplicantStatusDashboard.png" width="100%"/> 
-🛠️ HR Dashboard
-<img src="https://github.com/user-attachments/assets/fc755de1-becd-4613-9fd4-0ecf16712e68" width="100%"/> 
+### 🏠 Role-Based Home Page  
+![Home Page](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HomePage.png)
+
+### 📝 Applicant Registration Page  
+![Applicant Registration](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicantRegistration.png)
+
+### 🔐 Applicant Login  
+![Applicant Login](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicantLogin.png)
+
+### 🧑‍💼 HR Login  
+![HR Login](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HRLogin.png)
+
+### 📝 HR Registration  
+![HR Registration](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HRRegistration.png)
+
+### 🎓 Applicant Dashboard  
+![Applicant Dashboard](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicantDashboard.png)
+
+### 📄 Application Form
+![Application Form](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicationForm.png)
+
+### 📊 Status Dashboard  
+![Status Dashboard](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicantStatusDashboard.png)
+
+### 🛠️ HR Dashboard  
+![HR Dashboard](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HrDashboard.png)
+
+### 🛠️ HR Dashboard 2  
+![HR Dashboard 2](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HrDashboard2.png)
 
 👩‍💻 Authors & Contributors
 
