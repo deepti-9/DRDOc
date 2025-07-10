@@ -92,11 +92,12 @@ docker compose down -v
 <img src="https://github.com/user-attachments/assets/fc755de1-becd-4613-9fd4-0ecf16712e68" width="100%"/> 
 
 👩‍💻 Authors & Contributors
-👩‍💻 Deepti Yadav
-Backend Developer, Database Management
 
 👨‍💻 Praneel Tomar
 Frontend Developer, Form Design, User Experience
+
+👩‍💻 Deepti Yadav
+Backend Developer, Database Management
 
 🧑‍🏫 Mentor: Rahul Sir
 Guided problem understanding, project validation, and review.
