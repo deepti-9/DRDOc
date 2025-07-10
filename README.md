@@ -83,7 +83,7 @@ docker compose down -v
 📝 HR Registration
 <img src="https://github.com/user-attachments/assets/7fb42141-395a-4c51-8dbc-2e978374066d" width="100%"/>
 🎓 Applicant Dashboard
-<img src="Screenshots/ApplicantDashboard.png" width="100%"/>
+![ApplicantLogin](Screenshots/ApplicantLogin.png)
 📄 Application Form
 <img src="Screenshots/ApplicationForm.png" width="100%"/>
 📊 Status Dashboard
