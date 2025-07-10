@@ -1,12 +1,34 @@
-#slim is for smaller version
-FROM python:3.10-slim 
-# setting working directory in a container
+# Use a slim Python base image
+FROM python:3.10-slim
+
+# Set environment variable to avoid Python buffering issues
+ENV PYTHONUNBUFFERED=1
+
+# Create a working directory
 WORKDIR /application_portal
-# copying all our project files in a container
-COPY . .
-# installing everything mentioned in requirements.txt to create same environment for everyone 
+
+# Install system dependencies (optional: for psycopg2, Pillow, etc.)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    default-libmysqlclient-dev \
+    libpq-dev \
+    pkg-config \
+    gcc \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy only requirements first to leverage Docker cache
+COPY requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-# to tell on which port we working 
+
+COPY . .
+
+
+
+# Expose port 8000
 EXPOSE 8000
-# tells container to start python app.py when the container starts 
+
+# Run Django's development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
