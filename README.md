@@ -73,7 +73,7 @@ docker compose down
 docker compose down -v
 
 🏠 Role-Based Home Page
-<img src="Screenshots/HomePage.png" width="100%"/>
+![Home Page](Screenshots/HomePage.png)
 📝 Applicant Registration Page
 
 🔐 Applicant Login
