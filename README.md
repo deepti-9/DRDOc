@@ -72,9 +72,9 @@ docker compose down
 docker compose down -v
 
 🏠 Role-Based Home Page
-<img src="https://github.com/user-attachments/assets/3ea307e5-ab0c-4087-a5d4-81eee1ac4c8e" width="100%"/>
+<img src="screenshots/HomePage.png" width="100%"/>
 📝 Applicant Registration Page
-<img src="https://github.com/user-attachments/assets/0df03b11-2c0f-4209-bccb-adc3fe6cda1c" width="100%"/>
+<img src="screenshots/ApplicantRegistartion.png" width="100%"/>
 🔐 Applicant Login
 <img src="https://github.com/user-attachments/assets/59c3b05f-283a-4d21-9745-9a123ba7a442" width="100%"/>
 🧑‍💼 HR Login
