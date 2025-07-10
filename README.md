@@ -72,36 +72,35 @@ docker compose down
 # (Optional) Remove volumes for a clean state
 docker compose down -v
 
-
 ### 🏠 Role-Based Home Page  
-![Home Page](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HomePage.png)
+![Home Page](Screenshots/HomePage.png)
 
 ### 📝 Applicant Registration Page  
-![Applicant Registration](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicantRegistration.png)
+![Applicant Registration](Screenshots/ApplicantRegistration.png)
 
 ### 🔐 Applicant Login  
-![Applicant Login](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicantLogin.png)
+![Applicant Login](Screenshots/ApplicantLogin.png)
 
 ### 🧑‍💼 HR Login  
-![HR Login](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HRLogin.png)
+![HR Login](Screenshots/HRLogin.png)
 
 ### 📝 HR Registration  
-![HR Registration](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HRRegistration.png)
+![HR Registration](Screenshots/HRRegistration.png)
 
 ### 🎓 Applicant Dashboard  
-![Applicant Dashboard](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicantDashboard.png)
+![Applicant Dashboard](Screenshots/ApplicantDashboard.png)
 
-### 📄 Application Form
-![Application Form](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicationForm.png)
+### 📄 Application Form  
+![Application Form](Screenshots/ApplicationForm.png)
 
 ### 📊 Status Dashboard  
-![Status Dashboard](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/ApplicantStatusDashboard.png)
+![Status Dashboard](Screenshots/ApplicantStatusDashboard.png)
 
 ### 🛠️ HR Dashboard  
-![HR Dashboard](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HrDashboard.png)
+![HR Dashboard](Screenshots/HrDashboard.png)
 
 ### 🛠️ HR Dashboard 2  
-![HR Dashboard 2](https://raw.githubusercontent.com/deepti-9/DRDOc/main/Screenshots/HrDashboard2.png)
+![HR Dashboard 2](Screenshots/HrDashboard2.png)
 
 👩‍💻 Authors & Contributors
 
