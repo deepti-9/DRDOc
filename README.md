@@ -105,13 +105,13 @@ docker compose down -v
 
 👩‍💻 Authors & Contributors
 
-👨‍💻 Praneel Tomar
+👨‍💻 Praneel Tomar :
 Frontend Developer, Form Design, User Experience
 
-👩‍💻 Deepti Yadav
+👩‍💻 Deepti Yadav:
 Backend Developer, Database Management
 
-🧑‍🏫 Mentor: Rahul Sir
+🧑‍🏫 Mentor: Rahul Sir:
 Guided problem understanding, project validation, and review.
 
 🧪 Future Enhancements
