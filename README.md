@@ -71,7 +71,7 @@ docker compose down
 
 # (Optional) Remove volumes for a clean state
 docker compose down -v
-
+```
 ### 🏠 Role-Based Home Page  
 ![Home Page](Screenshots/HomePage.png)
 
@@ -101,6 +101,7 @@ docker compose down -v
 
 ### 🛠️ HR Dashboard 2  
 ![HR Dashboard 2](Screenshots/HrDashboard2.png)
+
 
 👩‍💻 Authors & Contributors
 
